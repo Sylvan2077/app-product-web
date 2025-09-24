@@ -2,50 +2,7 @@
 <template>
   <div class="home-page">
     <!-- 头部导航 -->
-    <header class="header">
-      <div class="logo">CH</div>
-      <nav class="nav">
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            首页<i class="el-icon--right"></i>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="home">首页</el-dropdown-item>
-              <el-dropdown-item command="about">关于我们</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            行业<i class="el-icon--right"></i>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="aerospace">航空航天</el-dropdown-item>
-              <el-dropdown-item command="military">兵器</el-dropdown-item>
-              <el-dropdown-item command="ship">船舶</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            学科<i class="el-icon--right"></i>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="structural">结构仿真</el-dropdown-item>
-              <el-dropdown-item command="fluid">流体仿真</el-dropdown-item>
-              <el-dropdown-item command="electromagnetic">电磁仿真</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-
-        <el-input placeholder="搜索" clearable style="width: 200px; margin-left: 20px;" />
-      </nav>
-    </header>
+    <NavigatonBar />
 
     <!-- 主题区 -->
     <section class="hero">
@@ -155,7 +112,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { Search } from '@element-plus/icons-vue';
-
+import NavigatonBar from './NavigatonBar.vue'
 const selectedIndustry = ref('all');
 const selectedCategory = ref('all');
 

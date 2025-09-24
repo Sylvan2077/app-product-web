@@ -1,15 +1,39 @@
-<template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
-</template>
+<script setup lang="ts">
+import TheWelcome from '../components/TheWelcome.vue'
+import pageone from '../components/pageone.vue'
+// import { useTagsViewStore } from "@/pinia/stores/tags-view"
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+// const tagsViewStore = useTagsViewStore()
+
+</script>
+
+<template>
+    <section class="app-main">
+      <div class="app-scrollbar">
+        <router-view v-slot="{ Component, route }">
+          <transition name="el-fade-in" mode="out-in">
+            <keep-alive>
+              <pageone />
+            </keep-alive>
+          </transition>
+        </router-view>
+      </div>
+    </section>
+</template>
+<style lang="scss" scoped>
+.app-main {
+  width: 100%;
+  display: flex;
+}
+
+.app-scrollbar {
+  flex-grow: 1;
+  overflow: auto;
+  // @extend %scrollbar;
+  display: flex;
+  flex-direction: column;
+  .app-container-grow {
+    flex-grow: 1;
   }
 }
 </style>

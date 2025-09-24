@@ -1,60 +1,13 @@
 <template>
   <div class="impact-dynamics-page">
-    <!-- 头部导航 -->
-    <header class="header">
-      <div class="logo">CH</div>
-      <nav class="nav">
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            首页<i class="el-icon--right"></i>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="home">首页</el-dropdown-item>
-              <el-dropdown-item command="about">关于我们</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            行业<i class="el-icon--right"></i>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="aerospace">航空航天</el-dropdown-item>
-              <el-dropdown-item command="military">兵器</el-dropdown-item>
-              <el-dropdown-item command="ship">船舶</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            学科<i class="el-icon--right"></i>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="structural">结构仿真</el-dropdown-item>
-              <el-dropdown-item command="fluid">流体仿真</el-dropdown-item>
-              <el-dropdown-item command="electromagnetic">电磁仿真</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-
-        <el-input placeholder="搜索" clearable style="width: 200px; margin-left: 20px;" />
-      </nav>
-    </header>
+    <NavigatonBar />
 
     <!-- 主题区 -->
     <section class="hero">
       <div class="hero-content">
         <h1>茉莉平台 冲击动力学模块</h1>
         <p>冲击动力学模块服务于战略装备XXXXXXXXXXXXXXX</p>
-        <el-button type="primary" round @click="watchVideo">观看视频</el-button>
-      </div>
-      <div class="hero-image">
-        <img src="https://via.placeholder.com/800x500?text=飞机模拟图" alt="飞机模拟图" />
+          <el-button round class="transparent-btn">观看视频</el-button>
       </div>
     </section>
 
@@ -81,48 +34,56 @@
     <section class="case-section">
       <h2>客户案例</h2>
       <div class="case-item">
-        <div class="case-image">
-          <img src="https://via.placeholder.com/400x600?text=无人机气囊回收" alt="无人机气囊回收" />
+      <div class="case-image" style="position: relative;">
+        <div style="position: absolute; top: 16px; left: 0; width: 100%; text-align: center; z-index: 2;">
+        <span style="color: #fff; font-size: 2rem; font-weight: bold; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">无人机气囊回收</span>
         </div>
-        <div class="case-info">
-          <h3>无人机气囊回收</h3>
-          <div class="info-box">
-            <h4><i class="el-icon-s-check"></i> 装备价值</h4>
-            <p>文本输入文本输入文本输入...</p>
-          </div>
-          <div class="info-box">
-            <h4><i class="el-icon-warning"></i> 痛点问题</h4>
-            <p>文本输入文本输入文本输入...</p>
-          </div>
-          <div class="info-box">
-            <h4><i class="el-icon-solution"></i> 解决方案</h4>
-            <p>文本输入文本输入文本输入...</p>
-          </div>
-          <div class="info-box">
-            <h4><i class="el-icon-success"></i> 应用成效</h4>
-            <p>文本输入文本输入文本输入...</p>
-          </div>
-          <div class="info-box">
-            <h4><i class="el-icon-refresh"></i> 替代效果</h4>
-            <p>文本输入文本输入文本输入...</p>
-          </div>
+        <img src="@/assets/无人机气囊回收.png" alt="无人机气囊回收" style="display: block; width: 100%;" />
+      </div>
+      <div class="case-info">
+        <div class="info-box">
+        <h4><i class="el-icon-s-check"></i> 装备价值</h4>
+        <p>文本输入文本输入文本输入...</p>
+        </div>
+        <div class="info-box">
+        <h4><i class="el-icon-warning"></i> 痛点问题</h4>
+        <p>文本输入文本输入文本输入...</p>
+        </div>
+        <div class="info-box">
+        <h4><i class="el-icon-solution"></i> 解决方案</h4>
+        <p>文本输入文本输入文本输入...</p>
+        </div>
+        <div class="info-box">
+        <h4><i class="el-icon-success"></i> 应用成效</h4>
+        <p>文本输入文本输入文本输入...</p>
+        </div>
+        <div class="info-box">
+        <h4><i class="el-icon-refresh"></i> 替代效果</h4>
+        <p>文本输入文本输入文本输入...</p>
         </div>
       </div>
+      </div>
       <div class="image-gallery">
-        <img src="https://via.placeholder.com/300x200?text=模拟1" alt="模拟1" />
-        <img src="https://via.placeholder.com/300x200?text=模拟2" alt="模拟2" />
-        <img src="https://via.placeholder.com/300x200?text=模拟3" alt="模拟3" />
+      <img src="@/assets/模拟.png" alt="模拟1" />
+      <img src="@/assets/模拟.png" alt="模拟2" />
+      <img src="@/assets/模拟.png" alt="模拟3" />
       </div>
     </section>
 
     <!-- 半穿甲战斗部模拟 -->
     <section class="case-section">
       <div class="case-item reverse">
-        <div class="case-image">
-          <img src="https://via.placeholder.com/400x600?text=半穿甲战斗部" alt="半穿甲战斗部" />
+              <div class="case-image" style="position: relative;">
+        <div style="position: absolute; top: 16px; left: 0; width: 100%; text-align: center; z-index: 2;">
+        <span style="color: #fff; font-size: 2rem; font-weight: bold; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">半穿甲战斗部</span>
         </div>
+        <img src="@/assets/无人机气囊回收.png" alt="半穿甲战斗部" style="display: block; width: 100%;" />
+      </div>
+        <!-- <div class="case-image">
+          <img src="@/assets/无人机气囊回收.png" alt="半穿甲战斗部" />
+        </div> -->
         <div class="case-info">
-          <h3>半穿甲战斗部侵彻模拟</h3>
+          <!-- <h3>半穿甲战斗部侵彻模拟</h3> -->
           <div class="info-box">
             <h4><i class="el-icon-s-check"></i> 装备价值</h4>
             <p>文本输入文本输入文本输入...</p>
@@ -146,23 +107,19 @@
         </div>
       </div>
       <div class="image-gallery">
-        <img src="https://via.placeholder.com/300x200?text=飞机1" alt="飞机1" />
-        <img src="https://via.placeholder.com/300x200?text=飞机2" alt="飞机2" />
-        <img src="https://via.placeholder.com/300x200?text=飞机3" alt="飞机3" />
+        <img src="@/assets/飞机.png" alt="飞机1" />
+        <img src="@/assets/飞机.png" alt="飞机2" />
+        <img src="@/assets/飞机.png" alt="飞机3" />
       </div>
     </section>
 
     <!-- 材料模型、约束模型等 -->
     <section class="model-section">
       <h2>16种工程仿真材料模型</h2>
-      <div class="carousel-container">
+      <div>
         <el-carousel :interval="4000" arrow="always">
           <el-carousel-item v-for="i in 3" :key="i">
-            <div class="model-card">
-              <img src="https://via.placeholder.com/300x200?text=飞机模型" alt="模型" />
-              <h4>线性静力分析</h4>
-              <p>简短介绍简短介绍简短介绍简短介绍</p>
-            </div>
+            <CarouselCard msg="线性静力分析"/>
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -173,11 +130,7 @@
       <div class="carousel-container">
         <el-carousel :interval="4000" arrow="always">
           <el-carousel-item v-for="i in 3" :key="i">
-            <div class="model-card">
-              <img src="https://via.placeholder.com/300x200?text=飞机模型" alt="模型" />
-              <h4>线性静力分析</h4>
-              <p>简短介绍简短介绍简短介绍简短介绍</p>
-            </div>
+            <CarouselCard msg="线性静力分析"/>
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -188,11 +141,7 @@
       <div class="carousel-container">
         <el-carousel :interval="4000" arrow="always">
           <el-carousel-item v-for="i in 3" :key="i">
-            <div class="model-card">
-              <img src="https://via.placeholder.com/300x200?text=飞机模型" alt="模型" />
-              <h4>节点集强制运动</h4>
-              <p>简短介绍简短介绍简短介绍简短介绍</p>
-            </div>
+            <CarouselCard msg="节点集强制运动"/>
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -203,62 +152,22 @@
       <div class="carousel-container">
         <el-carousel :interval="4000" arrow="always">
           <el-carousel-item v-for="i in 3" :key="i">
-            <div class="model-card">
-              <img src="https://via.placeholder.com/300x200?text=飞机模型" alt="模型" />
-              <h4>线性静力分析</h4>
-              <p>简短介绍简短介绍简短介绍简短介绍</p>
-            </div>
+            <CarouselCard msg="线性静力分析"/>
           </el-carousel-item>
         </el-carousel>
       </div>
     </section>
 
     <!-- 页脚 -->
-    <footer class="footer">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>关于我们</h4>
-          <ul>
-            <li>中心介绍</li>
-            <li>中心文化</li>
-            <li>XXXXX</li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>行业</h4>
-          <ul>
-            <li>航空</li>
-            <li>航天</li>
-            <li>兵器</li>
-            <li>船舶</li>
-            <li>XXXXX</li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>学科</h4>
-          <ul>
-            <li>结构仿真模块</li>
-            <li>流体仿真模块</li>
-            <li>电磁仿真模块</li>
-            <li>辐射仿真模块</li>
-            <li>多物理场仿真模块</li>
-          </ul>
-        </div>
-        <div class="footer-col contact">
-          <h4>联系我们</h4>
-          <p><strong>010-8XXXXXXXX</strong></p>
-          <p>邮编：111110</p>
-          <p>地址：北京市海淀区某某路一号</p>
-          <img src="https://via.placeholder.com/120x120?text=二维码" alt="二维码" />
-          <p>软件中心公众号</p>
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import NavigatonBar from './NavigatonBar.vue'
+import Footer from '@/components/Footer.vue'
+import CarouselCard from './CarouselCard.vue'
 
 const watchVideo = () => {
   alert('正在播放视频...')
@@ -270,6 +179,24 @@ const handleCommand = (command) => {
 </script>
 
 <style scoped>
+
+.image-gallery {
+  display: flex;
+  justify-content: space-around;
+}
+
+.transparent-btn {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: inherit; /* 或自定义颜色 */
+  border-color: white !important;
+}
+
+.transparent-btn:hover,
+.transparent-btn:focus {
+  background-color: rgba(0, 0, 0, 0.05) !important; /* 悬停效果 */
+  border-color: transparent !important;
+}
 
 .impact-dynamics-page {
   /* padding: 0 20px; */
@@ -312,13 +239,15 @@ const handleCommand = (command) => {
   justify-content: space-between;
   align-items: center;
   padding: 5rem 0;
-  background: url('https://via.placeholder.com/1920x800?text=背景图') no-repeat center center;
+  background: url('@/assets/飞机模拟图.png') no-repeat center center;
   background-size: cover;
   color: white;
   text-align: left;
-  /* width: 100vw;
-  min-width: 100vw;
-  box-sizing: border-box; */
+  height: 500px;
+}
+
+.hero-content {
+  margin-left: 20px;
 }
 
 .hero-content h1 {
@@ -343,9 +272,7 @@ const handleCommand = (command) => {
   justify-content: space-around;
   padding: 4rem 0;
   gap: 2rem;
-  /* width: 100vw;
-  min-width: 100vw;
-  box-sizing: border-box; */
+  z-index: 999;
 }
 
 .feature-item {
@@ -429,11 +356,6 @@ const handleCommand = (command) => {
 .model-section h2 {
   text-align: center;
   margin-bottom: 2rem;
-}
-
-.carousel-container {
-  display: flex;
-  justify-content: center;
 }
 
 .model-card {
