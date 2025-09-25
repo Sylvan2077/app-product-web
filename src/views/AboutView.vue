@@ -9,29 +9,23 @@ import CarouseSection from '@/components/CarouseSection.vue'
 </script>
 
 <template>
-  <section class="app-main">
+  <div class="app-main">
     <div class="app-scrollbar">
-      <router-view v-slot="{ Component, route }">
-        <transition name="el-fade-in" mode="out-in">
-          <keep-alive>
-            <div class="impact-dynamics-page">
-              <NavigatonBar />
+      <div class="impact-dynamics-page">
+        <NavigatonBar />
 
-              <ThemeAndFeature />
+        <ThemeAndFeature />
 
-              <CaseImgLeft />
-              <CaseImgRight />
+        <CaseImgLeft />
+        <CaseImgRight />
 
-              <CarouseSection />
+        <CarouseSection />
 
-              <!-- 页脚 -->
-              <Footer />
-            </div>
-          </keep-alive>
-        </transition>
-      </router-view>
+        <!-- 页脚 -->
+        <Footer />
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 <style lang="scss" scoped>
 .impact-dynamics-page {

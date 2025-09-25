@@ -121,6 +121,7 @@ const mobileMenuOpen = ref(false)
   color: #0066cc;
   display: flex;
   align-items: center;
+  margin-left: 30px;
 }
 
 .logo img {

@@ -1,33 +1,35 @@
 <template>
-  <div class="home-page">
-    <!-- Header -->
-    <NavigatonBar />
+  <div class="app-main">
+    <div class="app-scrollbar">
+      <!-- Header -->
+      <NavigatonBar />
 
-    <!-- Banner -->
-    <HeroBanner />
+      <!-- Banner -->
+      <HeroBanner />
 
-    <!-- 内容区域 -->
-    <main class="container mx-auto px-4 pb-12">
-      <!-- <CategoryFilter @industry-change="onIndustryChange" @subject-change="onSubjectChange" /> -->
+      <!-- 内容区域 -->
+      <main class="container mx-auto px-4 pb-12">
+        <!-- <CategoryFilter @industry-change="onIndustryChange" @subject-change="onSubjectChange" /> -->
 
-      <!-- 分类展示区 -->
-      <el-collapse v-model="activeNames" @change="handleChange">
-        <el-collapse-item :title="category.title" :name="key" :icon="CaretRight" div
-          v-for="(category, key) in categories" :key="key" class="mb-8">
-          <div class="task-list-header">
-            <ModuleCard v-for="item in filteredModules" :key="item.id" :title="item.title" :description="item.desc"
-              :image-url="item.img" />
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+        <!-- 分类展示区 -->
+        <el-collapse v-model="activeNames" @change="handleChange">
+          <el-collapse-item :title="category.title" :name="key" :icon="CaretRight" div
+            v-for="(category, key) in categories" :key="key" class="mb-8">
+            <div class="task-list-header">
+              <ModuleCard v-for="item in filteredModules" :key="item.id" :title="item.title" :description="item.desc"
+                :image-url="item.img" />
+            </div>
+          </el-collapse-item>
+        </el-collapse>
 
-    </main>
+      </main>
 
-    <!-- 合作伙伴 -->
-    <PartnerSection />
+      <!-- 合作伙伴 -->
+      <PartnerSection />
 
-    <!-- Footer -->
-    <Footer />
+      <!-- Footer -->
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -43,7 +45,7 @@ import { CaretRight } from '@element-plus/icons-vue'
 
 import type { CollapseModelValue } from 'element-plus'
 
-const activeNames = ref([0, 1, 2])
+const activeNames = ref([0, 1, 3])
 const handleChange = (val: CollapseModelValue) => {
   console.log(val)
 }
@@ -115,9 +117,10 @@ const filteredModules = computed(() => {
 
 // 分类标题（可扩展）
 const categories = [
-  { title: '热门推荐' },
-  { title: '最新上线' },
-  { title: '客户精选' }
+  { title: '航空' },
+  { title: '航天' },
+  { title: '兵器' },
+  { title: '船舶' }
 ]
 
 // 事件处理
@@ -131,6 +134,22 @@ const onSubjectChange = (val) => {
 </script>
 
 <style scoped>
+.app-main {
+  width: 100%;
+  display: flex;
+}
+
+.app-scrollbar {
+  flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+
+  .app-container-grow {
+    flex-grow: 1;
+  }
+}
+
 .task-list-header {
   display: grid;
   grid-gap: 12px;
@@ -139,9 +158,10 @@ const onSubjectChange = (val) => {
 }
 
 /deep/ .el-collapse-item__header {
-font-size: 18px;
-/* color: #F56C6C; */
+  font-size: 18px;
+  /* color: #F56C6C; */
 }
+
 /* 可选：添加过渡动画 */
 .module-card {
   transition: transform 0.2s ease;
