@@ -39,49 +39,6 @@
         </div>
       </div>
     </footer>
-  <!-- <footer class="bg-blue-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
-        <h3 class="text-lg font-bold mb-4">关于我们</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#" class="hover:text-blue-300">中心介绍</a></li>
-          <li><a href="#" class="hover:text-blue-300">中心文化</a></li>
-          <li><a href="#" class="hover:text-blue-300">xxxxx</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold mb-4">行业</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#" class="hover:text-blue-300">航空</a></li>
-          <li><a href="#" class="hover:text-blue-300">航天</a></li>
-          <li><a href="#" class="hover:text-blue-300">兵器</a></li>
-          <li><a href="#" class="hover:text-blue-300">船舶</a></li>
-          <li><a href="#" class="hover:text-blue-300">xxxxx</a></li>
-          <li><a href="#" class="hover:text-blue-300">xxxxx</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold mb-4">学科</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#" class="hover:text-blue-300">结构仿真模块</a></li>
-          <li><a href="#" class="hover:text-blue-300">流体仿真模块</a></li>
-          <li><a href="#" class="hover:text-blue-300">电磁仿真模块</a></li>
-          <li><a href="#" class="hover:text-blue-300">辐射仿真模块</a></li>
-          <li><a href="#" class="hover:text-blue-300">多物理仿真模块</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold mb-4">联系我们</h3>
-        <p class="text-lg font-semibold">010-8xxxxxxxx</p>
-        <p class="text-sm mt-2">邮编：111111</p>
-        <p class="text-sm">地址：北京市海淀区某某路一号</p>
-        <div class="mt-4">
-          <img src="https://via.placeholder.com/120x120" alt="二维码" class="w-20 h-20" />
-          <p class="text-xs mt-2">软件中心公众号</p>
-        </div>
-      </div>
-    </div>
-  </footer> -->
 </template>
 <style>
 .footer {
@@ -96,7 +53,9 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   text-align: left;
-  margin-left: 50px;
+  justify-content: center;      /* 新增：让网格内容居中 */
+  max-width: 2000px;            /* 新增：限制最大宽度 */
+  margin: 0 auto;               /* 新增：居中整个网格 */
 }
 
 .footer-col h4 {
