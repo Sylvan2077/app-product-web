@@ -30,33 +30,8 @@
 
     </section>
 </template>
-<script setup>
+<script setup lang="ts">
 
-const watchVideo = () => {
-    alert('正在播放视频...')
-}
-
-const handleCommand = (command) => {
-    console.log('点击了:', command)
-}
-
-const cards = [
-    {
-        title: '丰富的仿真功能',
-        icon: 'https://via.placeholder.com/50?text=⚙️',
-        desc: '支持多物理场耦合、非线性分析、动态响应等复杂仿真场景。'
-    },
-    {
-        title: '精确的仿真结果',
-        icon: 'https://via.placeholder.com/50?text=📊',
-        desc: '采用高阶数值算法，误差控制在0.5%以内，满足工程验证要求。'
-    },
-    {
-        title: '多元的专业化定制',
-        icon: 'https://via.placeholder.com/50?text=🛠️',
-        desc: '提供API接口、脚本扩展、UI定制服务，适配不同行业需求。'
-    }
-]
 </script>
 
 <style scoped>

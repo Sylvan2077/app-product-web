@@ -6,7 +6,7 @@
           <div class="hero-content">
             <h1>{{ item.title }}</h1>
             <p>{{ item.desc }}</p>
-            <el-button type="primary" round size="large" @click="handleVideoClick">
+            <el-button class="transparent-btn" type="primary" round size="large" @click="handleVideoClick">
               观看视频 →
             </el-button>
           </div>
@@ -45,6 +45,21 @@ const handleVideoClick = () => {
 </script>
 
 <style scoped>
+.transparent-btn {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #409EFF;
+  /* 或自定义颜色 */
+  border-color: #409EFF !important;
+}
+
+.transparent-btn:hover,
+.transparent-btn:focus {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  /* 悬停效果 */
+  border-color: transparent !important;
+}
+
 .hero-banner {
   width: 100%;
   min-height: 500px;
@@ -58,8 +73,9 @@ const handleVideoClick = () => {
 
 .carousel-bg {
   width: 100%;
-  height: 700px;
-  min-height: 500px;
+  height: 80vh;
+  min-height: 400px;
+  max-height: 900px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,7 +101,8 @@ const handleVideoClick = () => {
   z-index: 2;
   text-align: left;
   max-width: 700px;
-  margin-left: 5vw;      /* 靠左显示 */
+  margin-left: 5vw;
+  /* 靠左显示 */
   margin-right: auto;
   padding: 2rem 0 2rem 0;
   background: transparent;
