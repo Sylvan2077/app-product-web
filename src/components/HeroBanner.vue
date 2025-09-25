@@ -1,30 +1,44 @@
 <template>
-  <div class="hero-banner relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-100 overflow-hidden">
-    <!-- 背景图 -->
-    <div class="absolute inset-0 opacity-20">
-      <img src="@/assets/banner-bg.png" alt="背景" class="w-full h-full object-cover" />
-    </div>
-
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-4 leading-tight">
-        铸软件基石 擎装备重器
-      </h1>
-      <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-        致力于成为行业领先的仿真软件中心
-      </p>
-      <el-button type="primary" round size="large" @click="handleVideoClick" class="bg-blue-600 hover:bg-blue-700 text-white shadow-lg transform transition hover:scale-105">
-        观看视频 →
-      </el-button>
-    </div>
-
-    <!-- 右侧图标 -->
-    <!-- <div class="absolute right-10 top-1/2 transform -translate-y-1/2 animate-bounce">
-      <img src="@/assets/icon-cloud.png" alt="云" class="w-64 h-64 object-contain" />
-    </div> -->
+  <div class="hero-banner">
+    <el-carousel height="700px" indicator-position="outside" arrow="always" class="hero-carousel" :autoplay="true">
+      <el-carousel-item v-for="(item, idx) in banners" :key="idx">
+        <div class="carousel-bg" :style="`background-image: url('${item.img}');`">
+          <div class="hero-content">
+            <h1>{{ item.title }}</h1>
+            <p>{{ item.desc }}</p>
+            <el-button type="primary" round size="large" @click="handleVideoClick">
+              观看视频 →
+            </el-button>
+          </div>
+        </div>
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import banner1 from '@/assets/banner-bg.png'
+
+
+const banners = ref([
+  {
+    img: banner1,
+    title: '铸软件基石 擎装备重器',
+    desc: '致力于成为行业领先的仿真软件中心'
+  },
+  {
+    img: banner1,
+    title: '创新驱动 智能仿真',
+    desc: '赋能装备研发，助力产业升级'
+  },
+  {
+    img: banner1,
+    title: '高效协同 可靠保障',
+    desc: '为用户提供全流程仿真解决方案'
+  }
+])
+
 const handleVideoClick = () => {
   window.open('https://www.youtube.com', '_blank')
 }
@@ -32,26 +46,83 @@ const handleVideoClick = () => {
 
 <style scoped>
 .hero-banner {
-  background: linear-gradient(135deg, #e0f2fe 0%, #b7f1ff 50%, #93d9ff 100%);
+  width: 100%;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-banner::before {
+.hero-carousel {
+  width: 100%;
+}
+
+.carousel-bg {
+  width: 100%;
+  height: 700px;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.carousel-bg::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-  z-index: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.18);
+  z-index: 1;
 }
 
-.animate-bounce {
-  animation: bounce 3s infinite;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  max-width: 700px;
+  margin-left: 5vw;      /* 靠左显示 */
+  margin-right: auto;
+  padding: 2rem 0 2rem 0;
+  background: transparent;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-@keyframes bounce {
-  0%, 20%, 40%, 60%, 80%, 100% { transform: translateY(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateY(-20px); }
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  color: #444;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 900px) {
+
+  .carousel-bg,
+  .hero-carousel {
+    min-height: 350px;
+    height: 60vh;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
 }
 </style>

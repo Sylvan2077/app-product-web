@@ -1,45 +1,46 @@
 <template>
-  <!-- <div class="module-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-    <div class="h-40 bg-gray-200 flex items-center justify-center">
-      <img :src="imageUrl" alt="模块图" class="h-full w-full object-cover" />
-    </div>
-    <div class="p-4">
-      <h3 class="font-bold text-gray-800">{{ title }}</h3>
-      <p class="text-gray-600 text-sm mt-1">{{ description }}</p>
-    </div>
-  </div> -->
       <!-- 这里以航空模块为例，其他模块类似 -->
       <div class="module-group">
-        <el-card shadow="hover" class="module-card">
-          <template #title>基于平台 结构强度模块</template>
-          <div class="card-content">这是结构强度模块相关内容...</div>
-        </el-card>
-        <el-card shadow="hover" class="module-card">
-          <template #title>基于平台 动力仿真模块</template>
-          <div class="card-content">这是动力仿真模块相关内容...</div>
-        </el-card>
+          <el-card class="module-card" shadow="hover">
+    <!-- 图片区域 -->
+    <div class="card-image">
+      <img :src="imageUrl" alt="模块图" class="w-full h-full object-cover" />
+    </div>
+
+    <!-- 文字区域 -->
+    <div class="card-content">
+      <h3 class="card-title">{{ props.title }}</h3>
+      <p class="card-desc">{{ props.description }}</p>
+    </div>
+  </el-card>
         <!-- 更多航空模块卡片 -->
       </div>
       <!-- 航天、兵器、船舶模块内容类似，可通过组件复用或条件渲染实现 -->
 </template>
 
-<script>
-export default {
-  props: {
-    title: String,
-    description: String,
+<script setup lang="ts">
+const props = defineProps({
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
     imageUrl: {
-      type: String,
-      default: 'https://via.placeholder.com/300x200'
+        type: String,
+        default: 'https://via.placeholder.com/300x180?text=模块图'
     }
-  }
-}
+})
 </script>
 
 <style scoped>
 .module-card {
   border: 1px solid #ebeef5;
   transition: all 0.3s ease;
+  height: 300px;
+  min-width: 30px;
 }
 
 .module-card:hover {
@@ -57,5 +58,42 @@ export default {
 
 .module-card p {
   line-height: 1.4;
+}
+
+.module-card {
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.card-image {
+  height: 180px;
+  width: 100%;
+  background-color: #f5f5f5;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #303133;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #909399;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
 }
 </style>

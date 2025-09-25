@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="home-page">
     <!-- Header -->
@@ -13,18 +11,16 @@
       <!-- <CategoryFilter @industry-change="onIndustryChange" @subject-change="onSubjectChange" /> -->
 
       <!-- 分类展示区 -->
-      <div v-for="(category, key) in categories" :key="key" class="mb-8">
-        <h2 class="text-2xl font-bold mb-4">{{ category.title }} <span class="text-blue-500">▼</span></h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <ModuleCard
-            v-for="item in filteredModules"
-            :key="item.id"
-            :title="item.title"
-            :description="item.desc" 
-            :image-url="item.img"
-          />
-        </div>
-      </div>
+      <el-collapse v-model="activeNames" @change="handleChange">
+        <el-collapse-item :title="category.title" :name="key" :icon="CaretRight" div
+          v-for="(category, key) in categories" :key="key" class="mb-8">
+          <div class="task-list-header">
+            <ModuleCard v-for="item in filteredModules" :key="item.id" :title="item.title" :description="item.desc"
+              :image-url="item.img" />
+          </div>
+        </el-collapse-item>
+      </el-collapse>
+
     </main>
 
     <!-- 合作伙伴 -->
@@ -35,7 +31,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
 import HeroBanner from '@/components/HeroBanner.vue'
 import CategoryFilter from '@/components/CategoryFilter.vue'
@@ -43,7 +39,14 @@ import ModuleCard from '@/components/ModuleCard.vue'
 import PartnerSection from '@/components/PartnerSection.vue'
 import Footer from '@/components/Footer.vue'
 import NavigatonBar from '@/components/NavigatonBar.vue'
+import { CaretRight } from '@element-plus/icons-vue'
 
+import type { CollapseModelValue } from 'element-plus'
+
+const activeNames = ref([0, 1, 2])
+const handleChange = (val: CollapseModelValue) => {
+  console.log(val)
+}
 
 // 数据源 —— 简化 description 为 desc，内容也精简
 const modules = ref([
@@ -128,10 +131,22 @@ const onSubjectChange = (val) => {
 </script>
 
 <style scoped>
+.task-list-header {
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 100%;
+}
+
+/deep/ .el-collapse-item__header {
+font-size: 18px;
+/* color: #F56C6C; */
+}
 /* 可选：添加过渡动画 */
 .module-card {
   transition: transform 0.2s ease;
 }
+
 .module-card:hover {
   transform: translateY(-4px);
 }
