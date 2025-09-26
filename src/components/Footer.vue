@@ -77,4 +77,16 @@
   height: 120px;
   margin: 1rem 0;
 }
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 0 1.2rem;    /* 新增：移动端左右边距 */
+    text-align: center;
+  }
+  .footer-col {
+    margin-bottom: 1.5rem;
+  }
+}
 </style>
