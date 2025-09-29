@@ -2,10 +2,10 @@
   <div class="hero-banner">
     <el-carousel height="700px" indicator-position="outside" arrow="always" class="hero-carousel" :autoplay="true">
       <el-carousel-item v-for="(item, idx) in banners" :key="idx">
-        <div class="carousel-bg" :style="`background-image: url('${item.img}');`">
+        <div class="carousel-bg" :style="`background-image: url('${getImageUrl(item.img)}');`">
           <div class="hero-content">
             <h1>{{ item.title }}</h1>
-            <p>{{ item.desc }}</p>
+            <p>{{ item.subtitle }}</p>
             <el-button class="transparent-btn" type="primary" round size="large" @click="handleVideoClick">
               观看视频 →
             </el-button>
@@ -17,27 +17,36 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import banner1 from '@/assets/banner-bg.png'
-
+import { getHomeBannerDataApi } from "@/api/index"
+import { getImageUrl } from '@/utils/utils'
 
 const banners = ref([
   {
     img: banner1,
     title: '铸软件基石 擎装备重器',
-    desc: '致力于成为行业领先的仿真软件中心'
+    subtitle: '致力于成为行业领先的仿真软件中心'
   },
   {
     img: banner1,
     title: '创新驱动 智能仿真',
-    desc: '赋能装备研发，助力产业升级'
+    subtitle: '赋能装备研发，助力产业升级'
   },
   {
     img: banner1,
     title: '高效协同 可靠保障',
-    desc: '为用户提供全流程仿真解决方案'
+    subtitle: '为用户提供全流程仿真解决方案'
   }
 ])
+
+
+onMounted(() => {
+  getHomeBannerDataApi().then(res => {
+    console.log(res)
+    banners.value = res.data.banners
+  })
+})
 
 const handleVideoClick = () => {
   window.open('https://www.youtube.com', '_blank')

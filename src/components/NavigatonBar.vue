@@ -1,7 +1,66 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
+import { useRouter } from 'vue-router'
+const props = { multiple: true }
+const router = useRouter()
 const mobileMenuOpen = ref(false)
+const selectedValues = ref([])
+
+const client_options = [
+  {
+    value: 1,
+    label: '所有',
+    children: []
+  },
+  {
+    value: 2,
+    label: '航天',
+    children: []
+  },
+  {
+    value: 3,
+    label: '兵器',
+    children: []
+  },
+  {
+    value: 4,
+    label: '船舶',
+    children: []
+  }
+]
+
+const app_options = [
+  {
+    value: 1,
+    label: '所有',
+    children: []
+  },
+  {
+    value: 2,
+    label: '机构仿真模块',
+    children: []
+  },
+  {
+    value: 3,
+    label: '流体仿真模块',
+    children: []
+  },
+  {
+    value: 4,
+    label: '电磁仿真模块',
+    children: []
+  },
+  {
+    value: 5,
+    label: '辐射仿真模块',
+    children: []
+  },
+  {
+    value: 6,
+    label: '多物理仿真模块',
+    children: []
+  }
+]
 </script>
 
 <template>
@@ -28,34 +87,31 @@ const mobileMenuOpen = ref(false)
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="home">首页</el-dropdown-item>
-            <el-dropdown-item command="about">关于我们</el-dropdown-item>
+            <el-dropdown-item command="home" @click="router.push({ path: '/' })">首页</el-dropdown-item>
+            <el-dropdown-item command="about" @click="router.push({ path: '/about' })">关于我们</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          <RouterLink to="/">行业</RouterLink>
+          <i class="el-icon--right"></i>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item v-for="i of client_options" :key="i.value">{{ i.label }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
       <el-dropdown>
         <span class="el-dropdown-link">
-          <RouterLink to="/about">行业</RouterLink>
+          <RouterLink to="/">学科</RouterLink>
           <i class="el-icon--right"></i>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="aerospace">航空航天</el-dropdown-item>
-            <el-dropdown-item command="military">兵器</el-dropdown-item>
-            <el-dropdown-item command="ship">船舶</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-      <el-dropdown>
-        <span class="el-dropdown-link">
-          <RouterLink to="/about">学科</RouterLink>
-          <i class="el-icon--right"></i>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item command="structural">结构仿真</el-dropdown-item>
-            <el-dropdown-item command="fluid">流体仿真</el-dropdown-item>
-            <el-dropdown-item command="electromagnetic">电磁仿真</el-dropdown-item>
+            <el-dropdown-item v-for="i of app_options" :key="i.value">{{ i.label }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

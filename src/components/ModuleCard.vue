@@ -1,41 +1,59 @@
 <template>
-      <!-- 这里以航空模块为例，其他模块类似 -->
-      <div class="module-group">
-          <el-card class="module-card" shadow="hover">
-    <!-- 图片区域 -->
-    <div class="card-image">
-      <img :src="imageUrl" alt="模块图" class="w-full h-full object-cover" />
-    </div>
+  <div v-for="item in filteredModules" :key="item.id">
+    <!-- 这里以航空模块为例，其他模块类似 -->
+    <div class="module-group">
+      <el-card class="module-card" shadow="hover">
+        <!-- 图片区域 -->
+        <div class="card-image">
+          <img :src="getImageUrl(item.image_url)" alt="模块图" class="w-full h-full object-cover" />
+        </div>
 
-    <!-- 文字区域 -->
-    <div class="card-content">
-      <h3 class="card-title">{{ props.title }}</h3>
-      <p class="card-desc">{{ props.description }}</p>
+        <!-- 文字区域 -->
+        <div class="card-content">
+          <h3 class="card-title">{{ item.title }}</h3>
+          <p class="card-desc">{{ item.description }}</p>
+        </div>
+      </el-card>
+      <!-- 更多航空模块卡片 -->
     </div>
-  </el-card>
-        <!-- 更多航空模块卡片 -->
-      </div>
-      <!-- 航天、兵器、船舶模块内容类似，可通过组件复用或条件渲染实现 -->
+  </div>
+
 </template>
 
 <script setup lang="ts">
+import { getImageUrl } from '@/utils/utils'
+import { watch, ref, onMounted } from 'vue';
+import { getProductsDataApi } from '@/api/index'
+
+const filteredModules = ref<any>()
+
 const props = defineProps({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    imageUrl: {
-        type: String,
-        default: 'https://via.placeholder.com/300x180?text=模块图'
-    }
+
+  module: {
+    type: String,
+    required: true
+  }
 })
+console.log('ModuleCard props:', props.module);
+onMounted(() => {
+  const params = {
+    industry: props.module
+  }
+getProductsDataApi(params).then(res => {
+    console.log('产品数据:', res)
+    filteredModules.value = res.data.modules || []
+  }).catch(err => {
+    console.error('获取产品数据失败:', err)
+  })
+})
+
 </script>
 
 <style scoped>
+.module-group {
+  margin: 0 50px;
+}
+
 .module-card {
   border: 1px solid #ebeef5;
   transition: all 0.3s ease;
@@ -66,10 +84,29 @@ const props = defineProps({
   border-radius: 8px;
 }
 
+/* .card-image {
+  height: 180px;
+  width: 100%;
+  background-color: #f5f5f5;
+} */
 .card-image {
   height: 180px;
   width: 100%;
   background-color: #f5f5f5;
+  overflow: hidden;
+  /* 添加这一行确保图片不会溢出容器 */
+  position: relative;
+  /* 可选：为绝对定位的图片提供参考 */
+}
+
+.card-image img {
+  /* 确保图片完全填充容器并保持比例 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 保持图片比例并填充整个容器 */
+  display: block;
+  /* 移除图片下方可能的空白 */
 }
 
 .card-content {
