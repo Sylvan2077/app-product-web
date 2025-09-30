@@ -286,11 +286,8 @@ const cards = [
 }
 
 .model-section {
-  padding: 4rem 0;
+  padding: 4rem 10rem;
   background: #f0f8ff;
-  /* width: 100vw;
-  min-width: 100vw;
-  box-sizing: border-box; */
 }
 
 .model-section h2 {

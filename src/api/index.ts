@@ -1,4 +1,4 @@
-// import type * as Tables from "./type"
+import type * as Tables from "./type"
 import { request } from "@/http/axios"
 
 // /** 增 */
@@ -29,7 +29,7 @@ import { request } from "@/http/axios"
 
 /** 查 */
 // 查产品
-export function getProductsDataApi(params: any) {
+export function getProductsDataApi(params: Tables.GetProductsDataApi) {
   return request({
     url: "products",
     method: "get",
@@ -41,6 +41,14 @@ export function getProductsDataApi(params: any) {
 export function getHomeBannerDataApi() {
   return request({
     url: "banner",
+    method: "get"
+  })
+}
+
+// 统计行业和学科
+export function getStaticsDataApi() {
+  return request({
+    url: "statics",
     method: "get"
   })
 }

@@ -2,7 +2,7 @@
   <div class="app-main">
     <div class="app-scrollbar">
       <!-- Header -->
-      <NavigatonBar />
+      <NavigatonBar @industryChange="handleIndustryChange" @subjectChange="handleSubjectChange" />
 
       <!-- Banner -->
       <HeroBanner />
@@ -10,7 +10,7 @@
       <!-- 内容区域 -->
       <main class="container mx-auto px-4 pb-12">
         <!-- 分类展示区 -->
-        <el-collapse v-model="activeNames" @change="handleChange" style="margin: 0 40px;">
+        <el-collapse v-if="categories.length > 0" v-model="activeNames" @change="handleChange" style="margin: 0 40px;">
           <el-collapse-item :title="category.title" :name="category.title" :icon="CaretRight" div
             v-for="(category, key) in categories" :key="key" class="mb-8">
             <div class="task-list-header">
@@ -18,6 +18,9 @@
             </div>
           </el-collapse-item>
         </el-collapse>
+        <div v-else class="task-list-header">
+          <ModuleCard :subject="selectedSubject" />
+        </div>
       </main>
 
       <!-- 合作伙伴 -->
@@ -66,8 +69,8 @@ const modules = ref([
 
 
 // 筛选状态
-const selectedIndustry = ref('all')
-const selectedSubject = ref('all')
+const selectedIndustry = ref('')
+const selectedSubject = ref('')
 
 // 筛选逻辑
 const filteredModules = computed(() => {
@@ -79,20 +82,22 @@ const filteredModules = computed(() => {
 })
 
 // 分类标题（可扩展）
-const categories = [
+const categories = ref([
   { title: '航空' },
   { title: '航天' },
   { title: '兵器' },
   { title: '船舶' }
-]
+])
 
-// 事件处理
-const onIndustryChange = (val) => {
-  selectedIndustry.value = val
+const handleIndustryChange = (val: any) => {
+  categories.value = val
+  console.log('Selected categories:', categories.value)
 }
 
-const onSubjectChange = (val) => {
+const handleSubjectChange = (val: any) => {
+  categories.value = []
   selectedSubject.value = val
+  console.log('Selected subject:', selectedSubject.value)
 }
 </script>
 
@@ -119,7 +124,16 @@ const onSubjectChange = (val) => {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 80%;
   margin: 0 auto;
-  
+}
+
+@media (max-width: 768px) {
+  .task-list-header {
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    max-width: 80%;
+    margin: 0 auto;
+  }
 }
 
 /deep/ .el-collapse-item__header {

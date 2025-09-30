@@ -16,10 +16,10 @@ import CarouseSection from '@/components/CarouseSection.vue'
 
         <ThemeAndFeature />
 
-        <CaseImgLeft />
-        <CaseImgRight />
+        <CaseImgLeft class="side-caseimg"/>
+        <CaseImgRight class="side-caseimg"/>
 
-        <CarouseSection />
+        <CarouseSection/>
 
         <!-- 页脚 -->
         <Footer />
@@ -49,5 +49,9 @@ import CarouseSection from '@/components/CarouseSection.vue'
   .app-container-grow {
     flex-grow: 1;
   }
+}
+
+.side-caseimg {
+  margin: 0px 50px;
 }
 </style>

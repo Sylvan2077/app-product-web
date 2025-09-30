@@ -34,7 +34,7 @@
           <p><strong>010-8XXXXXXXX</strong></p>
           <p>邮编：111110</p>
           <p>地址：北京市海淀区某某路一号</p>
-          <img src="https://via.placeholder.com/120x120?text=二维码" alt="二维码" />
+          <img src="@/assets/wxewm.jpg" alt="二维码" />
           <p>软件中心公众号</p>
         </div>
       </div>

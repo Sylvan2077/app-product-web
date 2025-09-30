@@ -28,16 +28,35 @@ import { getProductsDataApi } from '@/api/index'
 const filteredModules = ref<any>()
 
 const props = defineProps({
-
   module: {
     type: String,
-    required: true
+    required: true,
+    default: ''
+  },
+  subject: {
+    type: String,
+    required: true,
+    default: ''
   }
 })
-console.log('ModuleCard props:', props.module);
+
+watch(() => props.subject, (newVal) => {
+  const params = {
+    subject: newVal
+  }
+  getProductsDataApi(params).then(res => {
+    console.log('产品数据:', res)
+    filteredModules.value = res.data.modules || []
+  }).catch(err => {
+    console.error('获取产品数据失败:', err)
+  })
+}, { immediate: true })
+
+
 onMounted(() => {
   const params = {
-    industry: props.module
+    industry: props.module,
+    subject: props.subject
   }
 getProductsDataApi(params).then(res => {
     console.log('产品数据:', res)
@@ -51,7 +70,7 @@ getProductsDataApi(params).then(res => {
 
 <style scoped>
 .module-group {
-  margin: 0 50px;
+  margin: 20px 50px;
 }
 
 .module-card {
@@ -84,29 +103,19 @@ getProductsDataApi(params).then(res => {
   border-radius: 8px;
 }
 
-/* .card-image {
-  height: 180px;
-  width: 100%;
-  background-color: #f5f5f5;
-} */
 .card-image {
   height: 180px;
   width: 100%;
   background-color: #f5f5f5;
   overflow: hidden;
-  /* 添加这一行确保图片不会溢出容器 */
   position: relative;
-  /* 可选：为绝对定位的图片提供参考 */
 }
 
 .card-image img {
-  /* 确保图片完全填充容器并保持比例 */
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* 保持图片比例并填充整个容器 */
   display: block;
-  /* 移除图片下方可能的空白 */
 }
 
 .card-content {
@@ -132,5 +141,58 @@ getProductsDataApi(params).then(res => {
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .module-group {
+    margin: 0 15px;
+    /* 减小移动端的左右边距 */
+  }
+  
+  .module-card {
+    height: 260px;
+    /* 移动端卡片高度适当减小 */
+  }
+  
+  .card-image {
+    height: 150px;
+    /* 移动端图片高度减小 */
+  }
+  
+  .card-content {
+    padding: 12px;
+    /* 移动端内容区域内边距减小 */
+  }
+  
+  .card-title {
+    font-size: 15px;
+    /* 移动端标题字体稍小 */
+  }
+  
+  .card-desc {
+    font-size: 13px;
+    /* 移动端描述字体稍小 */
+    -webkit-line-clamp: 2;
+    /* 移动端显示更少的行数 */
+  }
+}
+
+/* 小屏幕手机适配 */
+@media (max-width: 480px) {
+  .module-group {
+    margin: 0 10px;
+    /* 小屏幕手机边距更小 */
+  }
+  
+  .module-card {
+    height: 240px;
+    /* 小屏幕手机卡片高度进一步减小 */
+  }
+  
+  .card-image {
+    height: 140px;
+    /* 小屏幕手机图片高度进一步减小 */
+  }
 }
 </style>
