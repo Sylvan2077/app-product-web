@@ -86,6 +86,8 @@
 .image-gallery {
     display: flex;
     justify-content: space-around;
+    background: linear-gradient(to bottom, #e6f7ff, #fff);
+    padding: 20px;
 }
 
 .transparent-btn {

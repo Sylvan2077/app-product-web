@@ -31,7 +31,9 @@ import CarouseSection from '@/components/CarouseSection.vue'
 .impact-dynamics-page {
   font-family: 'Microsoft YaHei', sans-serif;
   color: #333;
-  background: linear-gradient(to bottom, #e6f7ff, #fff);
+  width: 100%;
+  // background: linear-gradient(to bottom, #e6f7ff, #fff);
+  background: #f5f9ff;
 }
 
 .app-main {

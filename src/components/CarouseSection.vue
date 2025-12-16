@@ -1,6 +1,6 @@
 <template>
         <!-- 材料模型、约束模型等 -->
-    <section class="model-section">
+    <section class="model-section" style="background: #f0f8ff;">
       <h2>16种工程仿真材料模型</h2>
       <div>
         <el-carousel :interval="4000" arrow="always">
@@ -11,7 +11,7 @@
       </div>
     </section>
 
-    <section class="model-section">
+    <section class="model-section" style="background: #f0ffff;">
       <h2>12种约束模型</h2>
       <div class="carousel-container">
         <el-carousel :interval="4000" arrow="always">
@@ -22,7 +22,7 @@
       </div>
     </section>
 
-    <section class="model-section">
+    <section class="model-section" style="background: #fff8f8;">
       <h2>11种接触模型</h2>
       <div class="carousel-container">
         <el-carousel :interval="4000" arrow="always">
@@ -33,7 +33,7 @@
       </div>
     </section>
 
-    <section class="model-section">
+    <section class="model-section" style="background: #ffffee;">
       <h2>载荷</h2>
       <div class="carousel-container">
         <el-carousel :interval="4000" arrow="always">
@@ -287,7 +287,6 @@ const cards = [
 
 .model-section {
   padding: 4rem 10rem;
-  background: #f0f8ff;
 }
 
 .model-section h2 {
