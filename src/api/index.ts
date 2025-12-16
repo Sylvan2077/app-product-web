@@ -1,32 +1,6 @@
 import type * as Tables from "./type"
 import { request } from "@/http/axios"
 
-// /** 增 */
-// export function createTableDataApi(data: Tables.CreateOrUpdateTableRequestData) {
-//   return request({
-//     url: "tables",
-//     method: "post",
-//     data
-//   })
-// }
-
-// /** 删 */
-// export function deleteTableDataApi(id: number) {
-//   return request({
-//     url: `tables/${id}`,
-//     method: "delete"
-//   })
-// }
-
-// /** 改 */
-// export function updateTableDataApi(data: Tables.CreateOrUpdateTableRequestData) {
-//   return request({
-//     url: "tables",
-//     method: "put",
-//     data
-//   })
-// }
-
 /** 查 */
 // 查产品
 export function getProductsDataApi(params: Tables.GetProductsDataApi) {
@@ -49,6 +23,22 @@ export function getHomeBannerDataApi() {
 export function getStaticsDataApi() {
   return request({
     url: "statics",
+    method: "get"
+  })
+}
+
+// 查合作伙伴
+export function getPartnersDataApi() {
+  return request({
+    url: "partners",
+    method: "get"
+  })
+}
+
+//查关于我们
+export function getAboutUsDataApi() {
+  return request({
+    url: "about-us",
     method: "get"
   })
 }

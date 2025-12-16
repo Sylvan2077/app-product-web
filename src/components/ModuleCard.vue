@@ -7,16 +7,17 @@
         <div class="card-image">
           <img :src="getImageUrl(item.image_url)" alt="模块图" class="w-full h-full object-cover" />
         </div>
-
         <!-- 文字区域 -->
         <div class="card-content">
           <h3 class="card-title">{{ item.title }}</h3>
           <p class="card-desc">{{ item.description }}</p>
         </div>
       </el-card>
+
       <!-- 更多航空模块卡片 -->
     </div>
   </div>
+
 
 </template>
 

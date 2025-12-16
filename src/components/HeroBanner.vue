@@ -1,7 +1,7 @@
 <template>
   <div class="hero-banner">
     <el-carousel height="700px" indicator-position="outside" class="hero-carousel" :autoplay="true">
-      <el-carousel-item v-for="(item, idx) in banners" :key="idx">
+      <el-carousel-item v-if="banners.length > 0" v-for="(item, idx) in banners" :key="idx">
         <div class="carousel-bg" :style="`background-image: url('${getImageUrl(item.img)}');`">
           <div class="hero-content">
             <h1>{{ item.title }}</h1>
@@ -12,6 +12,11 @@
           </div>
         </div>
       </el-carousel-item>
+      <el-skeleton v-else>
+        <template #template>
+          <el-skeleton-item variant="image" style="width: 100%; height: 100%" />
+        </template>
+      </el-skeleton>
     </el-carousel>
   </div>
 </template>

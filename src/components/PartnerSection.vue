@@ -4,51 +4,56 @@
       <h2 class="text-3xl font-bold text-gray-800" style="margin: 20px 0">合作伙伴</h2>
       <p class="text-gray-600 mt-2" style="margin: 20px 0">正与众多客户一起创造更多价值</p>
     </div>
-
-    <div class="task-list-header">
-      <div v-for="logo in logos" :key="logo.id" class="flex justify-center">
-        <img :src="logo.src" alt="Logo" class="h-16 w-auto" />
+    <div v-if="partners.length > 0" style="display: flex; justify-content: space-around; padding-bottom: 14px;">
+      <div v-for="logo in partners" :key="logo.id" class="flex justify-center">
+        <img :src="getImageUrl(logo.logo_url)" alt="Logo" class="h-16 w-auto" />
       </div>
     </div>
+    <el-skeleton v-else>
+      <template #template>
+        <div  class="task-list-header">
+          <el-skeleton-item variant="image" style="width: 240px; height: 100px" />
+          <el-skeleton-item variant="image" style="width: 240px; height: 100px" />
+          <el-skeleton-item variant="image" style="width: 240px; height: 100px" />
+        </div>
+        <div style="padding: 14px">
+          <div style="
+            display: flex;
+            align-items: center;
+            justify-items: space-between;
+          ">
+          </div>
+        </div>
+      </template>
+    </el-skeleton>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import huawei from '@/assets/huawei.png'
-import mobile from '@/assets/mobile.png'
-import telecom from '@/assets/telecom.png'
+import { onMounted, ref } from 'vue'
+import { getPartnersDataApi } from '@/api/index'
+import { getImageUrl } from '@/utils/utils'
 
-const logos = ref([
-  { id: 1, src: huawei },
-  { id: 2, src: huawei },
-  { id: 3, src: huawei },
-  { id: 4, src: huawei },
-  { id: 5, src: huawei },
-  { id: 6, src: huawei },
-  { id: 7, src: mobile },
-  { id: 8, src: mobile },
-  { id: 9, src: mobile },
-  { id: 10, src: mobile },
-  { id: 11, src: mobile },
-  { id: 12, src: mobile },
-  { id: 13, src: telecom },
-  { id: 14, src: telecom },
-  { id: 15, src: telecom },
-  { id: 16, src: telecom },
-  { id: 17, src: telecom },
-  { id: 18, src: telecom }
-])
+const partners = ref([])
 
+onMounted(() => {
+  getPartnersDataApi().then((res) => {
+    partners.value = res.data.partners
+    console.log(res)
+  })
+})
 </script>
 <style scoped>
 .task-list-header {
-  display: grid;
+  /* display: grid;
   grid-gap: 0px;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   max-width: 100%;
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 20px; */
+  display: flex; 
+  justify-content: space-around;
+  padding-bottom: 14px;
 }
 
 .text-center-mb-10 {
